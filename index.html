@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto_App</title>
+    <!-- bootstrap -->
+    <link defer href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- script javascript -->
+    <script defer src="./script.js"></script>
+</head>
+
+<body>
+
+    <!-- FORMULARIO INGRESO PRESUPUESTO -->
+    <form id="formularioPresupuesto">
+        <div class="form-group">
+            <label for="itemPresupuesto">Ingresa Presupuesto</label>
+            <input type="number" class="form-control" id="itemPresupuesto" placeholder="Solo números">
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+    </form>
+
+    <!-- FORMULARIO INGRESO GASTOS -->
+
+    <form id="formularioGasto">
+        <div class="form-group">
+            <label for="itemNombreGasto">Ingresa el Nombre del Gasto</label>
+            <input type="text" class="form-control" id="itemNombreGasto" placeholder="Igrese Item">
+        </div>
+        <div class="form-group">
+            <label for="itemCantidadGasto">Ingresa la Cantidad del Gasto</label>
+            <input type="text" class="form-control" id="itemCantidadGasto" placeholder="Solo números">
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir</button>
+    </form>
+
+
+
+    <!-- TABLA DE PRESUPUESTO -->
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">PRESUPUESTO</th>
+             <th scope="col">GASTOS</th>
+            <th scope="col">SALDO</th>
+        </tr>
+    </thead>
+
+     <tbody>
+        <tr id="tablaDisplay">
+            <td id="displayPresupuesto"></td>
+            <td id="displayGastos"></td>
+            <td id="displaySaldo"></td>
+         </tr>
+    </tbody>
+</table>
+
+
+
+
+<!-- TABLA GASTOS -->
+<main class="container">
+    <div class="row" id="datos Gastos">
+        <div class="col-md-12">
+            <div class="table-responsive">
+
+
+            <table class="table">
+                <thead>
+                    <tr id="miTablaPersonalizada">
+                        <th scope="col">Gasto</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+<!-- aquí ingresas los datos de la API llamados desde el archivo JavaSript -->
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+
+</main>
+
+
+
+
+</body>
+
+</html>
