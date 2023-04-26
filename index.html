@@ -10,7 +10,10 @@
     <link defer href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <!-- script javascript -->
-    <script defer src="./script.js"></script>
+    <script defer type ="module" src="./script.js"></script>
+
+    <!-- cdn del icono de basura -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
 </head>
 
 <body>
@@ -35,7 +38,7 @@
             <label for="itemCantidadGasto">Ingresa la Cantidad del Gasto</label>
             <input type="text" class="form-control" id="itemCantidadGasto" placeholder="Solo números">
         </div>
-        <button type="submit" class="btn btn-primary">Añadir</button>
+        <button type="submit" class="btn btn-primary" id="botonAnadirGasto">Añadir</button>
     </form>
 
 
@@ -65,7 +68,7 @@
 
 <!-- TABLA GASTOS -->
 <main class="container">
-    <div class="row" id="datos Gastos">
+    <div class="row" id="datosGastos">
         <div class="col-md-12">
             <div class="table-responsive">
 
@@ -75,10 +78,10 @@
                     <tr id="miTablaPersonalizada">
                         <th scope="col">Gasto</th>
                         <th scope="col">Valor</th>
-                        <th scope="col"></th>
+                        <th scope="col">Borrar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tableBody">
 <!-- aquí ingresas los datos de la API llamados desde el archivo JavaSript -->
                 </tbody>
             </table>
@@ -92,7 +95,8 @@
 </main>
 
 
-
+    <!-- JQUERY 3.6.4 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 </body>
 
