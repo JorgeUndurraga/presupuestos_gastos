@@ -1,8 +1,5 @@
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
-//$(document).ready(function(){
-
-
 // <----------------- INGRESAR PRESUPUESTO---------------------------->
 let cantidadPresupuesto = 0;
 displayPresupuesto.innerHTML = cantidadPresupuesto.toLocaleString("es-CL", {type: "currency", currency: "CLP",});
@@ -24,26 +21,25 @@ function ItemGasto(gasto, valor, id) {
 }
 
 
-
 // Creación del array para la tabla
 formularioGasto.addEventListener("submit", (event) => {
     event.preventDefault();
-  
+
+    // if(cantidadPresupuesto==0){
+    //   alert("ingrese presupusto")
+    //   formularioGasto.reset();
+    // }
+
+
     let descripcionGasto = itemNombreGasto.value;
     let valorGasto = itemCantidadGasto.value;
     let idGasto = uuidv4().slice(0, 6);
 
-    let arraydeItemGasto = creadorArrayGasto(descripcionGasto, valorGasto, idGasto);
+    arrayDeGastos = creadorArrayGasto(descripcionGasto, valorGasto, idGasto);
 
-    console.log(arraydeItemGasto)//nooooooooo
+    console.log(arrayDeGastos)//nooooooooo
 
-    despliegueDeGastos(arraydeItemGasto);
-
-    function despliegueDeGastos(arraydeItemGasto){
-      let gastosTotales = sumadeGastos(arraydeItemGasto);
-      displayGastos.innerHTML  = gastosTotales;
-      displaySaldo.innerHTML = cantidadPresupuesto - gastosTotales;
-    }
+    despliegueDeGastos(arrayDeGastos);
 
 // Rellenado de la  tabla de Gastos
 let rellenarGastos = () => {
@@ -51,7 +47,7 @@ let rellenarGastos = () => {
         tableBody.innerHTML = "";
         let acumulador = "";
         // recorrido de la tabla e instalación de los datos en ella
-        arraydeItemGasto.forEach((e) => {
+        arrayDeGastos.forEach((e) => {
 
           console.log(e);
 
@@ -65,59 +61,59 @@ let rellenarGastos = () => {
         tableBody.innerHTML = acumulador;
         // <td><input onclick="borrarFila();"><i class="bi bi-trash3-fill borrarFila"></i></td>
 
-          $(document).on('click', '.borrarTd', function(event) {
-            event.preventDefault();
-            event.stopImmediatePropagation(); //para que no repeta laccion sucesivamente
-            
-            let idTr = $(this).closest('tr').attr('id');
-
-            var borrandoDato = function(idTr, arraydeItemGasto) {
-              let arrayRestado = arraydeItemGasto.filter((item)=>item.id !== idTr)
-              return arrayRestado;
-            };
-
-          arraydeItemGastoRenovado = borrandoDato(idTr, arraydeItemGasto);
-
-          $(this).closest('tr').remove();
-
-          console.log(arraydeItemGastoRenovado)// esta la lleva
-          despliegueDeGastos(arraydeItemGastoRenovado);
-
-          });
-
     };
+    rellenarGastos();    
+});
 
-    rellenarGastos();
+$(document).on('click', '.borrarTd', function(event) {
+  event.preventDefault();
+  event.stopImmediatePropagation(); //para que no repeta la accion sucesivamente
+  
+  let idTr = $(this).closest('tr').attr('id');
+
+console.log(arrayDeGastos);
+let arraydeGastosRenovado = borrandoDato(idTr, arrayDeGastos);
+
+
+function borrandoDato(idTr, arrayDeGastos) {
+  let arrayRestado = arrayDeGastos.filter((item)=>item.id !== idTr)
+  return arrayRestado;
+};
+
+$(this).closest('tr').remove(); //BORRA LA LINEA
+
+arrayDeGastos=arraydeGastosRenovado;//actualiza el array con los productos restados
+console.log(arrayDeGastos)// esta la lleva
+// document.getElementById("formularioGasto").reset();
+despliegueDeGastos(arrayDeGastos);
 
 });
 
 // ---------------------------------FUNCIONES--------------------------------
 
-let arrayDeGastos = [];
+
+function despliegueDeGastos(arrayDeGastos){
+  let gastosTotales = sumadeGastos(arrayDeGastos);
+  displayGastos.innerHTML  = gastosTotales;
+  displaySaldo.innerHTML = cantidadPresupuesto - gastosTotales;
+}
+
+
 let gastoNuevo =[];
+let arrayDeGastos = [];
+
 // creador de array
     function creadorArrayGasto(descripcionGasto, valorGasto, idGasto) {
-      gastoNuevo = new ItemGasto(descripcionGasto, valorGasto, idGasto);
-      arrayDeGastos.push(gastoNuevo);
-      console.log(arrayDeGastos)
-      return arrayDeGastos;
+        gastoNuevo = new ItemGasto(descripcionGasto, valorGasto, idGasto);
+        arrayDeGastos.push(gastoNuevo);
+        return arrayDeGastos;
     }
 
-
 // suma de gastos
-function sumadeGastos(arraydeItemGasto){
+function sumadeGastos(arrayDeGastos){
     let  suma = 0;
-    arraydeItemGasto.forEach((e) => {
+    arrayDeGastos.forEach((e) => {
     suma += parseInt(e.valor);
     });
     return suma;
 }
-
-
-//})
-
-
-
-
-
-
