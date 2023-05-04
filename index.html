@@ -10,7 +10,7 @@
     <link defer href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <!-- script javascript -->
-    <script defer type ="module" src="./script.js"></script>
+    <script defer type="module" src="./script.js"></script>
 
     <!-- cdn del icono de basura -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
@@ -18,81 +18,102 @@
 
 <body>
 
-    <!-- FORMULARIO INGRESO PRESUPUESTO -->
-    <form id="formularioPresupuesto">
-        <div class="form-group">
-            <label for="itemPresupuesto">Ingresa Presupuesto</label>
-            <input type="number" class="form-control" id="itemPresupuesto" placeholder="Solo números">
-        </div>
-        <button type="submit" class="btn btn-primary">Ingresar</button>
-    </form>
-
-    <!-- FORMULARIO INGRESO GASTOS -->
-
-    <form id="formularioGasto">
-        <div class="form-group">
-            <label for="itemNombreGasto">Ingresa el Nombre del Gasto</label>
-            <input type="text" class="form-control" id="itemNombreGasto" placeholder="Igrese Item">
-        </div>
-        <div class="form-group">
-            <label for="itemCantidadGasto">Ingresa la Cantidad del Gasto</label>
-            <input type="text" class="form-control" id="itemCantidadGasto" placeholder="Solo números">
-        </div>
-        <button type="submit" class="btn btn-primary" id="botonAnadirGasto">Añadir</button>
-    </form>
 
 
 
-    <!-- TABLA DE PRESUPUESTO -->
+    <div class="container">
+        <div class="row">
 
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">PRESUPUESTO</th>
-             <th scope="col">GASTOS</th>
-            <th scope="col">SALDO</th>
-        </tr>
-    </thead>
+          <div class="col-md-4 p-3">
+            <div class="p-4 mb-3 bg-primary border border-dark" style="height: 9.85rem;" id="cuadroFormPresupuesto">
+                    <!-- FORMULARIO INGRESO PRESUPUESTO -->
+                    <!-- /////////////////////////////////// -->
+                    <form id="formularioPresupuesto">
+                        <div class="form-group">
+                            <label for="itemPresupuesto" style="font-weight: bold;">Ingresa Presupuesto</label>
+                            <input type="number" class="form-control" id="itemPresupuesto" placeholder="Solo números">
+                        </div>
 
-     <tbody>
-        <tr id="tablaDisplay">
-            <td id="displayPresupuesto"></td>
-            <td id="displayGastos"></td>
-            <td id="displaySaldo"></td>
-         </tr>
-    </tbody>
-</table>
-
-
-
-
-<!-- TABLA GASTOS -->
-<main class="container">
-    <div class="row" id="datosGastos">
-        <div class="col-md-12">
-            <div class="table-responsive">
-
-
-            <table class="table">
-                <thead>
-                    <tr id="miTablaPersonalizada">
-                        <th scope="col">Gasto</th>
-                        <th scope="col">Valor</th>
-                        <th scope="col">Borrar</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-<!-- aquí ingresas los datos de la API llamados desde el archivo JavaSript -->
-                </tbody>
-            </table>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-dark btn-sm mt-3">Ingresar</button>
+                        </div>
+                    </form>
+                    <!-- /////////////////////////////////// -->
+            </div>
+            <div class="p-4 mt-3 bg-info border border-dark" id="cuadroFormGastos">
+                <!-- FORMULARIO INGRESO GASTOS -->
+                <!-- /////////////////////////////////// -->
+                <form id="formularioGasto">
+                    <div class="form-group">
+                        <label for="itemNombreGasto" style="font-weight: bold;">Ingresa el Nombre del Gasto</label>
+                        <input type="text" class="form-control" id="itemNombreGasto" placeholder="Igrese Item">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="itemCantidadGasto" style="font-weight: bold;">Ingresa la Cantidad del Gasto</label>
+                        <input type="text" class="form-control" id="itemCantidadGasto" placeholder="Solo números">
+                    </div>
 
 
-        </div>
-    </div>
-</div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-dark btn-sm mt-3" id="botonAnadirGasto">Añadir</button>
+                    </div>
+
+                </form>
+                <!-- /////////////////////////////////// -->
+            </div>
+          </div>
+
+          <div class="col-md-6 p-3">
+            <div class="p-4 pt-2 mb-3 border border-dark" style="height: 9.85rem; background-color: rgb(252, 213, 69);" id="cuadroTablaPresupuesto" >
+                <!-- TABLA DE PRESUPUESTO -->
+                <!-- /////////////////////////////////// -->
+                <div class="table-responsive"> <!-- tabla responsiva-->
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Presupuesto</th>
+                                <th scope="col">Gastos</th>
+                                <th scope="col">Saldo</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="bg-light">
+                            <tr id="tablaDisplay">
+                                <td class="col-6" id="displayPresupuesto"></td>
+                                <td class="col-4" id="displayGastos"></td>
+                                <td class="col-2" id="displaySaldo"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /////////////////////////////////// -->
+            </div>
+            <div class="p-4 border border-dark" id="cuadroTablaGastos" style="background-color: rgb(38, 255, 38);">
+                <!-- TABLA GASTOS -->
+                <!-- /////////////////////////////////// -->
+                <div class="table-responsive"> <!-- tabla responsiva-->
+                    <table class="table">
+                        <thead>
+                            <tr id="miTablaPersonalizada">
+                                <th class="col-6" scope="col">Gastos</th>
+                                <th class="col-4" scope="col">Valor</th>
+                                <th class="col-2" scope="col">Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- aquí ingresas los datos de la API llamados desde el archivo JavaSript -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /////////////////////////////////// -->
+            </div>
+          </div>
+        </div><!-- row -->
+      </div><!-- conteainer -->
+
+      
 
 
-</main>
 
 
     <!-- JQUERY 3.6.4 -->

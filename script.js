@@ -9,7 +9,9 @@ formularioPresupuesto.addEventListener("submit", (event) => {
       event.preventDefault();
       cantidadPresupuesto = itemPresupuesto.value;
       
-      if(cantidadPresupuesto == 0){
+      /*Este condiconal sirve para que, en caso de cambiar  la cantidad de presupuesto
+      la tabla de gastos se despliegue con el nuevo monto*/ 
+      if(cantidadPresupuesto <= 0){
         alert("Ingrese su Presupuesto")
         formularioPresupuesto.reset();
       }
@@ -34,7 +36,7 @@ formularioGasto.addEventListener("submit", (event) => {
       event.preventDefault();
 
       if(cantidadPresupuesto == 0){
-        alert("Ingrese su Presupuesto")
+        alert("Primero ingrese su Presupuesto")
       }
       else{
         let descripcionGasto = itemNombreGasto.value;
@@ -55,7 +57,7 @@ formularioGasto.addEventListener("submit", (event) => {
                   <tr id ="${e.id}">
                       <td>${e.gasto}</td>
                       <td>${e.valor}</td>
-                      <td><button><i class="bi bi-trash3-fill borrarTd"></button></i></td>
+                      <td><button><i class="bi bi-trash3-fill borrarTd" style="color: green"></button></i></td>
                   </tr> `;
               });
               tableBody.innerHTML = acumulador;
@@ -89,7 +91,11 @@ function borrandoDato(idTr, arrayDeGastos) {
 function despliegueDeGastos(arrayDeGastos){
     let gastosTotales = sumadeGastos(arrayDeGastos);
     displayGastos.innerHTML  = gastosTotales;
-    displaySaldo.innerHTML = cantidadPresupuesto - gastosTotales;
+    let saldo = cantidadPresupuesto - gastosTotales;
+    if(saldo <0){
+      alert("Es triste decirlo, pero SU PRESUPUESTO NO ALCANZA!!")
+    }
+      displaySaldo.innerHTML = saldo
 }
 
 // Creador de array de Gastos ingresados en el formulario
@@ -99,7 +105,7 @@ function creadorArrayGasto(descripcionGasto, valorGasto, idGasto) {
     return arrayDeGastos;
 }
 
-// suma de gastos
+// Suma de gastos
 function sumadeGastos(arrayDeGastos){
     let  suma = 0;
     arrayDeGastos.forEach((e) => {
